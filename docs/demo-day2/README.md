@@ -1,14 +1,17 @@
 # DAY 2
 ## Create Jenkins Job to deploy application
+
 ### Create NodeJS global tools
 Manage Jenkins -> Global Tools Configuration -> Nodejs -> NodeJS installations
 ![Image of Nodejs tools](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/nodejs-tools.png?raw=true)
+
 ### Create credential
 Manage Jenkins -> Manage Credential -> (global) -> Add credentials
 ![Image of Jenkins Credential](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/jenkins-credential.png?raw=true)
 ### Create New Job
 Dashboard -> New Item
 ![Image of New Job](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/new-job.png?raw=true)
+
 ### Add Pipeline
 ```
 pipeline {
@@ -41,11 +44,14 @@ pipeline {
 ```
 $ npm install --save mocha chai chai-http
 ```
+
 ### Edit file package.json 
 ```
 "test": "mocha",
 ```
+
 ### Create folder `test`
+
 ### Create file server.js inside `test` folder
 ```
 let chai = require("chai");
@@ -95,23 +101,27 @@ module.exports = server;
 ```
 $ npm run test
 ```
+## Create Jenkins Multibranch
+### Create New Job
+New Item -> Multibranch Pipeline
+
+### Setup the job multibranch job 
+![Image of New Multibranch](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/multibranch-settings.png?raw=true)
+
 ## Create Jenkins webhook smee channel
 ### Open https://smee.io/ -> Start a new channel
+
 ### Install smee-client
 ```
 $ npm install --global smee-client
 ```
+
 ### Listen smee client
 ```
 $ smee --url https://smee.io/<your channel> --target http://localhost:8080/github-webhook/
 ```
-## Create Jenkins Multibranch
-### Create New Job
-New Item -> Multibranch Pipeline
-### Setup the job multibranch job 
-![Image of New Multibranch](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/mutibranch-settings.png?raw=true)
 ## Integrate Github PR with Jenkins
-
+x
 # BONUS
 ## Automate Job Creation (Job Seeder)
 
