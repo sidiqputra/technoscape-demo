@@ -121,7 +121,9 @@ $ npm install --global smee-client
 $ smee --url https://smee.io/<your channel> --target http://localhost:8080/github-webhook/
 ```
 ## Integrate Github PR with Jenkins
-x
+### Create credential github-token
+Manage Jenkins -> Manage Credential -> (global) -> Add credentials
+![Image of Credential Github](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/credential-github.png?raw=true)
 # BONUS
 ## Automate Job Creation (Job Seeder)
 
