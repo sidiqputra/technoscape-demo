@@ -19,7 +19,7 @@ pipeline {
     stages {
         stage('Prepare Code') {
             steps {
-                checkout([$class: "GitSCM", branches: [[name: "main"]], userRemoteConfigs: [[url: "https://github.com/serdaucok/technoscape.git"]]])
+                checkout([$class: "GitSCM", branches: [[name: "main"]], userRemoteConfigs: [[url: "https://github.com/sidiqputra/technoscape-demo.git"]]])
             }
         }
         stage('Build') {
@@ -39,6 +39,8 @@ pipeline {
     }
 }
 ```
+### Deploy the code
+open the job -> build now
 ## Create unit test
 ### Install mocha, chai, chai-http
 ```
