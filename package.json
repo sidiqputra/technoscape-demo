@@ -7,6 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/sidiqputra/technoscape-demo/issues"
   },
-  "homepage": "https://github.com/sidiqputra/technoscape-demo#readme"
+  "homepage": "https://github.com/sidiqputra/technoscape-demo#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

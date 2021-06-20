@@ -69,6 +69,14 @@ app.listen(5000, () => {
  console.log("Server running on port 5000");
 });
 ```
+### Add startup script
+edit package.json
+```
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+```
 ### Start application
 ```
 $ npm start
@@ -85,7 +93,7 @@ app.get("/product/:id", (req, res, next) => {
 ```
 ### Push changes to repository
 ```
-$ git commit -A
+$ git add -A
 $ git commit -am 'initial commit'
 $ git push origin main
 ```
