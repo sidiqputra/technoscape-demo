@@ -1,11 +1,6 @@
 pipeline {
     agent any 
     stages {
-        stage('Prepare Code') {
-            steps {
-                checkout scm
-            }
-        }
         stage('Test') {
             steps {
                 nodejs(nodeJSInstallationName: 'node14') {
