@@ -102,14 +102,27 @@ module.exports = server;
 $ npm run test
 ```
 ## Create Jenkins Multibranch
+### Create credential github-token
+Manage Jenkins -> Manage Credential -> (global) -> Add credentials
+![Image of Credential Github](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/credential-github.png?raw=true)
+
 ### Create New Job
 New Item -> Multibranch Pipeline
 
 ### Setup the job multibranch job 
 ![Image of New Multibranch](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/multibranch-settings.png?raw=true)
 
+
+## Integrate Github PR with Jenkins
+### Open github repository
+Settings -> Branches -> Add rule
+![Image of github protection rules](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/github-protection-rules.png?raw=true)
+
 ## Create Jenkins webhook smee channel
 ### Open https://smee.io/ -> Start a new channel
+### Create github webhook
+Settings -> Webhooks -> Add webhook
+![Image of github webhook](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/github-webhook.png?raw=true)
 
 ### Install smee-client
 ```
@@ -120,10 +133,7 @@ $ npm install --global smee-client
 ```
 $ smee --url https://smee.io/<your channel> --target http://localhost:8080/github-webhook/
 ```
-## Integrate Github PR with Jenkins
-### Create credential github-token
-Manage Jenkins -> Manage Credential -> (global) -> Add credentials
-![Image of Credential Github](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/credential-github.png?raw=true)
+
 # BONUS
 ## Automate Job Creation (Job Seeder)
 
