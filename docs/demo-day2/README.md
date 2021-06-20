@@ -1,9 +1,14 @@
 # DAY 2
-## Create Jenkins pipeline to deploy application
+## Create Jenkins Job to deploy application
 ### Create NodeJS global tools
-Manage Jenkins -> Global Tools COnfiguration -> Nodejs -> NodeJS installations
-![Image of Nodejs tools](https://github.com/sidiqputra/docs/images/nodejs-tools.png)
-
+Manage Jenkins -> Global Tools Configuration -> Nodejs -> NodeJS installations
+![Image of Nodejs tools](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/nodejs-tools.png?raw=true)
+### Create credential
+Manage Jenkins -> Manage Credential -> (global) -> Add credentials
+![Image of Jenkins Credential](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/jenkins-credential.png?raw=true)
+### Create New Job
+Dashboard -> New Item
+![Image of New Job](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/new-job.png?raw=true)
 ## Create unit test
 ### Install mocha, chai, chai-http
 ```
