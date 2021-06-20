@@ -9,6 +9,33 @@ Manage Jenkins -> Manage Credential -> (global) -> Add credentials
 ### Create New Job
 Dashboard -> New Item
 ![Image of New Job](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/new-job.png?raw=true)
+### Add Pipeline
+```
+pipeline {
+    agent any 
+    stages {
+        stage('Prepare Code') {
+            steps {
+                checkout([$class: "GitSCM", branches: [[name: "main"]], userRemoteConfigs: [[url: "https://github.com/serdaucok/technoscape.git"]]])
+            }
+        }
+        stage('Build') {
+            steps {
+                nodejs(nodeJSInstallationName: 'node14') {
+                    sh 'npm install'
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                withCredentials([string(credentialsId: 'heroku-token', variable: 'TOKEN')]) {
+                    sh 'git push https://:${TOKEN}@git.heroku.com/technoscape.git HEAD:main'
+                }
+            }
+        }
+    }
+}
+```
 ## Create unit test
 ### Install mocha, chai, chai-http
 ```
@@ -69,6 +96,15 @@ module.exports = server;
 $ npm run test
 ```
 ## Create Jenkins webhook smee channel
+### Open https://smee.io/ -> Start a new channel
+### Install smee-client
+```
+$ npm install --global smee-client
+```
+### Listen smee client
+```
+$ smee --url https://smee.io/<your channel> --target http://localhost:8080/github-webhook/
+```
 ## Create Jenkins Multibranch
 ## Integrate Github PR with Jenkins
 
