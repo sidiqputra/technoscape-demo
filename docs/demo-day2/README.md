@@ -106,6 +106,10 @@ $ npm install --global smee-client
 $ smee --url https://smee.io/<your channel> --target http://localhost:8080/github-webhook/
 ```
 ## Create Jenkins Multibranch
+### Create New Job
+New Item -> Multibranch Pipeline
+### Setup the job multibranch job 
+![Image of New Multibranch](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/mutibranch-settings.png?raw=true)
 ## Integrate Github PR with Jenkins
 
 # BONUS
