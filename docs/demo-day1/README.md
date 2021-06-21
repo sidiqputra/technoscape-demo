@@ -61,7 +61,8 @@ var express = require("express");
 var Products = require("./product.json");
 var app = express();
 
-app.get("/product/listall", (req, res, next) => {
+//GET all list
+app.get("/product/listall", (req, res) => {
     res.json(Products);
 });
 
@@ -82,13 +83,13 @@ edit package.json
 $ npm start
 ```
 ### Open browser http://localhost:5000
-### Add another function
+### Add another route
 ```
-app.get("/product/:id", (req, res, next) => {
-    console
+//GET detail by id
+app.get("/product/:id", (req, res) => {
     res.json(Products.find((product) => {
-        return +req.params.id == product.id
-    }))
+        return req.params.id == product.id
+    }))  
 });
 ```
 ### Push changes to repository
