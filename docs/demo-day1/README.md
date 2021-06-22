@@ -38,32 +38,13 @@ $ npm init
 ```
 $ npm install express --save
 ```
-### Create file product.json
-```
-[
-    {
-        "id": 1,
-        "name": "Toyota"
-    },
-    {
-        "id": 2,
-        "name": "Mitsubishi"
-    },
-    {
-        "id": 3,
-        "name": "Chevrolet"
-    }
-]
-```
 ### Create file index.js
 ```
 var express = require("express");
-var Products = require("./product.json");
 var app = express();
 
-//GET all list
-app.get("/product/listall", (req, res) => {
-    res.json(Products);
+app.get('/', (req, res) => {
+    res.send('Simple rest api');
 });
 
 app.listen(5000, () => {
@@ -83,7 +64,35 @@ edit package.json
 $ npm start
 ```
 ### Open browser http://localhost:5000
-### Add another route
+
+### Create file product.json
+```
+[
+    {
+        "id": 1,
+        "name": "Toyota"
+    },
+    {
+        "id": 2,
+        "name": "Mitsubishi"
+    },
+    {
+        "id": 3,
+        "name": "Chevrolet"
+    }
+]
+```
+### Create new function
+```
+var Products = require("./product.json");
+
+//GET all list
+app.get("/product/listall", (req, res) => {
+    res.json(Products);
+});
+```
+
+### Add another function
 ```
 //GET detail by id
 app.get("/product/:id", (req, res) => {
