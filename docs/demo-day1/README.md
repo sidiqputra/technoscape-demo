@@ -19,9 +19,6 @@ Please install the following application in your local device :
 ### Create new repositories
   - open repositories -> new
 
-### Create new token
-  - open profile -> settings -> developer settings -> personal access token
-
 ### Open terminal and clone repository
 ```
 $ git clone https://github.com/<user>/<repo-name>.git
@@ -91,7 +88,6 @@ app.get("/product/listall", (req, res) => {
     res.json(Products);
 });
 ```
-
 ### Add another function
 ```
 //GET detail by id
@@ -100,6 +96,12 @@ app.get("/product/:id", (req, res) => {
         return req.params.id == product.id
     }))  
 });
+```
+### Create new github token
+  - open profile -> settings -> developer settings -> personal access token
+### Authenticated to github
+```
+$ git remote set-url origin https://<user>:<token>@github.com/<user>/<reponame>.git
 ```
 ### Push changes to repository
 ```
