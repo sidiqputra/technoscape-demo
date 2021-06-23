@@ -1,18 +1,24 @@
 # DAY 2
+---
 ## Create Jenkins Job to deploy application
 
-### Create NodeJS global tools
-Manage Jenkins -> Global Tools Configuration -> Nodejs -> NodeJS installations
+- #### Create NodeJS global tools
+`Open Jenkins -> Manage Jenkins -> Global Tools Configuration -> Nodejs -> NodeJS installations`
+
 ![Image of Nodejs tools](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/nodejs-tools.png?raw=true)
 
-### Create credential
-Manage Jenkins -> Manage Credential -> (global) -> Add credentials
+- #### Create credential
+`Manage Jenkins -> Manage Credential -> (global) -> Add credentials`
+
 ![Image of Jenkins Credential](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/jenkins-credential.png?raw=true)
-### Create New Job
-Dashboard -> New Item
+
+- #### Create New Job
+`Dashboard -> New Item`
+
 ![Image of New Job](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/new-job.png?raw=true)
 
-### Add Pipeline
+
+- #### Add Pipeline
 ```
 pipeline {
     agent any 
@@ -39,22 +45,26 @@ pipeline {
     }
 }
 ```
-### Deploy the code
-open the job -> build now
+- #### Deploy the code
+
+`open the job -> build now`
+
+- #### Automate deploy with poll scm
+
 ## Create unit test
-### Install mocha, chai, chai-http
+- #### Install mocha, chai, chai-http
 ```
 $ npm install --save mocha chai chai-http
 ```
 
-### Edit file package.json 
+- #### Edit file package.json 
 ```
 "test": "mocha",
 ```
 
-### Create folder `test`
+- #### Create folder `test`
 
-### Create file server.js inside `test` folder
+- #### Create file server.js inside `test` folder
 ```
 let chai = require("chai");
 let chaiHttp = require("chai-http");
@@ -91,7 +101,8 @@ describe('Test GET Product', () => {
 
 });
 ```
-### Adjust index.js to export module
+
+- #### Adjust index.js to export module
 ```
 const server = app.listen(PORT, () => {
  console.log("Server running on port " + PORT);
@@ -99,44 +110,78 @@ const server = app.listen(PORT, () => {
 
 module.exports = server;
 ```
-### Run unit test
+- #### Run unit test
 ```
 $ npm run test
 ```
 ## Create Jenkins Multibranch
-### Create credential github-token
-Manage Jenkins -> Manage Credential -> (global) -> Add credentials
+- #### Create credential github-token
+`Manage Jenkins -> Manage Credential -> (global) -> Add credentials`
+
 ![Image of Credential Github](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/credential-github.png?raw=true)
 
-### Create New Job
-New Item -> Multibranch Pipeline
+- #### Create New Job
+`New Item -> Multibranch Pipeline`
 
-### Setup the job multibranch job 
+- #### Setup the multibranch job 
+
 ![Image of New Multibranch](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/multibranch-settings.png?raw=true)
 
 
 ## Integrate Github PR with Jenkins
-### Open github repository
-Settings -> Branches -> Add rule
+- #### Open github repository
+`Settings -> Branches -> Add rule`
+
 ![Image of github protection rules](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/github-protection-rules.png?raw=true)
 
-## Create Jenkins webhook smee channel
-### Open https://smee.io/ -> Start a new channel
-### Create github webhook
-Settings -> Webhooks -> Add webhook
+- #### create smee channel
+`Open` [smee.io](https://smee.io "smee.io") -> `Start a new channel`
+
+- #### Create github webhook
+`Open github.com -> Settings -> Webhooks -> Add webhook`
+
+
 ![Image of github webhook](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/github-webhook.png?raw=true)
 
-### Install smee-client
+- #### Install smee-client
 ```
 $ npm install --global smee-client
 ```
 
-### Listen smee client
+- #### Listen smee client
 ```
 $ smee --url https://smee.io/<your channel> --target http://localhost:8080/github-webhook/
 ```
-
-# BONUS
-## Automate Job Creation (Job Seeder)
-
-- https://github.com/iqraabdulrauf/api-testing-with-mocha-chai/blob/master/index.js
+- #### Open text editor and create new branch
+```
+$ git checkout -b feature/automation-test
+```
+- #### Create Jenkinsfile
+```
+pipeline {
+    agent any
+    stages {
+        stage ('Checkout') {
+            steps {
+                checkout scm 
+            }
+        }
+        stage('Test') {
+            steps {
+                nodejs(nodeJSInstallationName: 'node14') {
+                    sh 'npm install'
+                    sh 'npm run test'
+                }
+            }
+        }
+    }
+}
+```
+- #### Commit changes to branch
+```
+$ git add -A
+$ git commit -m 'add Jenkinsfile'
+$ git push origin feature/automation-test
+```
+- #### Create New PR in github
+`in this stage new PR will run unit test before we can merging the code`

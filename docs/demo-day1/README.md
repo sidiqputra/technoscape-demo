@@ -1,4 +1,5 @@
 # DAY 1
+---
 
 ## Prerequisite(s)
 
@@ -11,31 +12,32 @@ Please install the following application in your local device :
 
 ## CREATE GITHUB PROJECT
 
-### Sign up
+- #### Sign up
   - open https://github.com/join
   - fill up the registration form
   - verify your email address
 
-### Create new repositories
-  - open repositories -> new
+- #### Create new repositories
+`open repositories -> new`
 
-### Open terminal and clone repository
+- #### Open terminal and clone repository
 ```
 $ git clone https://github.com/<user>/<repo-name>.git
 ```
 
 ## CREATE SIMPLE NODEJS APPLICATION
 
-### Bootstrap new nodejs project
+- #### Bootstrap new nodejs project
 ```
 $ cd <repo-name>
 $ npm init
 ```
-### Install express
+- #### Install express
 ```
 $ npm install express --save
 ```
-### Create file index.js
+
+- #### Create file index.js
 ```
 var express = require("express");
 var app = express();
@@ -48,7 +50,8 @@ app.listen(5000, () => {
  console.log("Server running on port 5000");
 });
 ```
-### Add startup script
+
+- #### Add startup script
 edit package.json
 ```
   "scripts": {
@@ -56,13 +59,13 @@ edit package.json
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 ```
-### Start application
+- #### Start application
 ```
 $ npm start
 ```
-### Open browser http://localhost:5000
+- #### Open browser http://localhost:5000
 
-### Create file product.json
+- #### Create file product.json
 ```
 [
     {
@@ -79,7 +82,7 @@ $ npm start
     }
 ]
 ```
-### Create new function in index.js
+- #### Create new function in index.js
 ```
 var Products = require("./product.json");
 
@@ -88,7 +91,7 @@ app.get("/product/listall", (req, res) => {
     res.json(Products);
 });
 ```
-### Add another function in index.js
+- #### Add another function in index.js
 ```
 //GET detail by id
 app.get("/product/:id", (req, res) => {
@@ -97,13 +100,14 @@ app.get("/product/:id", (req, res) => {
     }))  
 });
 ```
-### Create new github token
-  - open profile -> settings -> developer settings -> personal access token
-### Authenticated to github
+- #### Create new github token
+`open profile -> settings -> developer settings -> personal access token`
+
+- #### Authenticated to github
 ```
 $ git remote set-url origin https://<user>:<token>@github.com/<user>/<reponame>.git
 ```
-### Push changes to repository
+- #### Push changes to repository
 ```
 $ git add -A
 $ git commit -am 'initial commit'
@@ -111,33 +115,40 @@ $ git push origin main
 ```
 
 ## Create Heroku application
-### Sign up
-- Open https://signup.heroku.com/
-- fill up form
-### Create new app
-- Open https://dashboard.heroku.com/apps
-- create new app (unique application name)
-### Install Heroku CLI https://devcenter.heroku.com/articles/heroku-cli
-### login heroku cli
+
+- #### Sign up
+open https://signup.heroku.com/
+fill up the form
+
+- #### Create new app
+open https://dashboard.heroku.com/apps
+create new app (unique application name)
+
+- #### Install Heroku CLI 
+open https://devcenter.heroku.com/articles/heroku-cli
+
+- #### login heroku cli
 ```
 $ heroku login
 ```
-### Add heroku git remote
+- #### Add heroku git remote
 ```
 $ heroku git:remote -a <app-name>
 ```
-### Deploy app to Heroku
+- #### Deploy app to Heroku
 ```
 $ git push heroku main
 ```
-### Open your heroku application in browser https://appname.herokuapp.com/
-##### *) in this stage you will getting error in heroku app
+- #### Open your heroku application in browser 
+https://yourappname.herokuapp.com
 
-### Add this line
+`*) in this stage you will getting error in heroku app`
+
+- #### Add this line in index.js
 ```
 var PORT = process.env.PORT || 5000;
 ```
-### Change below line
+- #### Change below line in index.js
 ```
 app.listen(5000, () => {
  console.log("Server running on port 5000");
@@ -149,25 +160,26 @@ app.listen(PORT, () => {
  console.log("Server running on port " + PORT);
 });
 ```
-### Create file Procfile
+- #### Create file Procfile
 ```
 web: node index.js
 ```
-### Deploy app to Heroku
+- #### Deploy app to Heroku
 ```
 $ git add .
 $ git commit -m 'add Procfile'
 $ git push origin main
 $ git push heroku main
 ```
-### Re-open the app https://appname.herokuapp.com/
+- #### Re-open the app 
+https://yourappname.herokuapp.com
 
 ## Setup Jenkins
-### Clone repository
+- #### Clone repository
 ```
 $ git clone https://github.com/sidiqputra/jenkins-docker.git
 ```
-### Start Jenkins
+- #### Start Jenkins
 ```
 $ cd jenkins-docker
 $ docker-compose up -d
