@@ -184,3 +184,18 @@ $ git clone https://github.com/sidiqputra/jenkins-docker.git
 $ cd jenkins-docker
 $ docker-compose up -d
 ```
+## Create Freestyle job to deploy application
+- #### Create a job
+`New Item -> Enter Job Name -> Select Freestyle project`
+
+![Image of freestyle build env](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/freestyle-buildenv.png?raw=true)
+
+
+![Image of freestyle build script](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/freestyle-buildscript.png?raw=true)
+
+- #### Create new commit on the repo
+- #### Trigger build
+`Job -> build now`
+
+- #### Automated build with pool scm
+

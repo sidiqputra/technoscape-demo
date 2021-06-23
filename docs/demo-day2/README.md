@@ -185,13 +185,3 @@ $ git push origin feature/automation-test
 ```
 - #### Create New PR in github
 `in this stage new PR will run unit test before we can merging the code`
-
-![Image of freestyle build env](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/freestyle-buildenv.png?raw=true)
-
-
-![Image of freestyle build script](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/freestyle-buildscript.png?raw=true)
-
-- #### Trigger build
-`Job -> build now`
-
-- #### Automated build with pool scm
