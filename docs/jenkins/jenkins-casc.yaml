@@ -21,9 +21,8 @@ jobs:
             scm {
               git {
                 remote {
-                  url('https://github.com/tiket/TIX-DSL.git')
-                  credentials('github-tiket')
-                  scriptPath('Jenkinsfile-k8s.dev')
+                  url('https://github.com/sidiqputra/technoscape-demo.git')
+                  scriptPath('./docs/jenkins/Jenkinsfile.dsl')
                 }
                   branch('*/master')
               }
