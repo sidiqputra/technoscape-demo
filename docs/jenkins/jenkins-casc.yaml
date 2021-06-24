@@ -116,9 +116,9 @@ jobs:
               git {
                 remote {
                   url('https://github.com/sidiqputra/technoscape-demo.git')
-                  scriptPath('docs/jenkins/Jenkinsfile.dsl')
+                  scriptPath('docs/jenkins/jobdsl/Jenkinsfile.dsl')
                  }
-                   branch('*/master')
+                   branch('*/main')
                }
              }
             lightweight()
