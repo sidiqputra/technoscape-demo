@@ -1,34 +1,103 @@
 jenkins:
-  systemMessage: |
-    This Jenkins is 100% configured and managed 'as code'.
-    Config is now mostly handled by the 'Jenkins Configuration as Code' (JCasC) plugin.
-    Please only do a changes in JCasC config.
-  tool:
-    git:
-      installations:
-      - home: "git"
-        name: "Default"
-  jobs:
-    - script: >
-        pipelineJob('TIX-DSL') {
-          logRotator {
-              numToKeep 10
-          }
-          triggers {
-              githubPush()
-          }
-          definition {
-            cpsScm {
-              scm {
-                git {
-                  remote {
-                    url('https://github.com/sidiqputra/technoscape-demo.git')
-                    scriptPath('./docs/jenkins/Jenkinsfile.dsl')
-                  }
-                    branch('*/main')
-                }
-              }
-              lightweight()
-            }
-          }
-        }
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  labelAtoms:
+  - name: "master"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: false
+  scmCheckoutRetryCount: 0
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
+  sSHD:
+    port: -1
+unclassified:
+  bitbucketEndpointConfiguration:
+    endpoints:
+    - bitbucketCloudEndpoint:
+        enableCache: false
+        manageHooks: false
+        repositoriesCacheDuration: 0
+        teamCacheDuration: 0
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  buildStatusConfig:
+    dbVersion: 2
+    enableGithub: true
+    enableHttp: false
+    enableInfluxDb: false
+    enableStatsd: false
+    httpVerifySSL: false
+    ignoreSendingTestCoverageToInflux: false
+    ignoreSendingTestResultsToInflux: true
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "http://localhost:8080/github-webhook/"
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "muhammadsidiqputra@gmail.com"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  pollSCM:
+    pollingThreadCount: 10
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"
+  nodejs:
+    installations:
+    - name: "node14"
+      properties:
+      - installSource:
+          installers:
+          - nodeJSInstaller:
+              id: "14.17.1"
+              npmPackagesRefreshHours: 72
