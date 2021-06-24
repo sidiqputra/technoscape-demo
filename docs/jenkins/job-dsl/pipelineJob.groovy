@@ -21,7 +21,7 @@ pipeline {
     stages {
         stage('Prepare Code') {
             steps {
-                checkout([$class: "GitSCM", branches: [[name: "main"]], userRemoteConfigs: [[url: "https://github.com/sidiqputra/''' + project_name + '''.git"]]])
+                checkout([$class: "GitSCM", branches: [[name: "main"]], userRemoteConfigs: [[url: "https://github.com/msidiqputra/''' + project_name + '''.git"]]])
             }
         }
         stage('Build') {
