@@ -101,3 +101,28 @@ tool:
           - nodeJSInstaller:
               id: "14.17.1"
               npmPackagesRefreshHours: 72
+jobs:
+  - script: >
+      pipelineJob('TIX-DSL') {
+         logRotator {
+            numToKeep 10
+        }
+        triggers {
+             githubPush()
+        }
+         definition {
+           cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/tiket/TIX-DSL.git')
+                  credentials('github-tiket')
+                  scriptPath('Jenkinsfile-k8s.dev')
+                 }
+                   branch('*/master')
+               }
+             }
+            lightweight()
+           }
+        }
+      }
