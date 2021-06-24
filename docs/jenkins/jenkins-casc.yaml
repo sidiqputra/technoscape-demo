@@ -1,0 +1,34 @@
+systemMessage: |
+  This Jenkins is 100% configured and managed 'as code'.
+  Config is now mostly handled by the 'Jenkins Configuration as Code' (JCasC) plugin.
+  Please only do a changes in JCasC config.
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+jobs:
+  - script: >
+      pipelineJob('TIX-DSL') {
+        logRotator {
+            numToKeep 10
+        }
+        triggers {
+            githubPush()
+        }
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/tiket/TIX-DSL.git')
+                  credentials('github-tiket')
+                  scriptPath('Jenkinsfile-k8s.dev')
+                }
+                  branch('*/master')
+              }
+            }
+            lightweight()
+          }
+        }
+      }
