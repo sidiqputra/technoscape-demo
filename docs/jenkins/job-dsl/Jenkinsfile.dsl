@@ -4,7 +4,7 @@ pipeline {
         stage('Create a job') {
             steps {
               jobDsl targets: [
-                '*.groovy',
+                './*.groovy',
               ].join('\n'),
               removedJobAction: 'DELETE',
               removedViewAction: 'DELETE',
