@@ -185,3 +185,26 @@ $ git push origin feature/automation-test
 ```
 - #### Create New PR in github
 `in this stage new PR will run unit test before we can merging the code`
+
+---
+
+## BONUS
+
+Automate Jenkins configuration and job creation
+
+- ##### Prerequisite(s)
+Make sure you have installed plugin jenkins configuration as code (Jcasc) and job DSL.
+
+- #### Pointing Jenkins configuration as code yaml to jenkins server with ENV vars 
+```
+CASC_JENKINS_CONFIG="https://raw.githubusercontent.com/sidiqputra/technoscape-demo/main/docs/jenkins/jenkins-casc.yaml"
+```
+in this stage jenkins will create new job seeder. 
+
+- #### Create script to automate job creation
+example :
+```
+https://github.com/sidiqputra/technoscape-demo/tree/main/docs/jenkins/job-dsl
+```
+flow :
+![Image of Job Seeder](https://github.com/sidiqputra/technoscape-demo/blob/main/docs/images/job-seeder.png?raw=true)
