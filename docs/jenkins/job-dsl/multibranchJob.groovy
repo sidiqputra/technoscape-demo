@@ -12,7 +12,7 @@ def project_name = InputJSON.project[i].name
             github {
                 id("${project_name}")
                 scanCredentialsId('github-token')
-                repository('msidiqputra/' + project_name + '.git)
+                repository('msidiqputra/' + project_name + '.git')
                 buildOriginBranch(false)
                 buildOriginBranchWithPR(true)
                 buildForkPRMerge(false)
