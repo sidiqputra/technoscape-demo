@@ -161,15 +161,16 @@ $ git checkout -b feature/automation-test
 pipeline {
     agent any
     stages {
-        stage ('Checkout') {
+        stage ('Build') {
             steps {
-                checkout scm 
+                nodejs(nodeJSInstallationName: 'node14') {
+                    sh 'npm install'
+                }
             }
         }
         stage('Test') {
             steps {
                 nodejs(nodeJSInstallationName: 'node14') {
-                    sh 'npm install'
                     sh 'npm run test'
                 }
             }
